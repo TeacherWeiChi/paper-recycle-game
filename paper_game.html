@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>♻️ 再生紙救地球小遊戲</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      padding: 2em;
+      background: #f0fdf4;
+      color: #1a1a1a;
+    }
+    h1 {
+      color: #15803d;
+    }
+    .question {
+      background: #ffffff;
+      padding: 1em;
+      border-radius: 10px;
+      margin-bottom: 2em;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+    input {
+      width: 80px;
+      padding: 0.5em;
+      margin: 0 0.5em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .result {
+      margin-top: 1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>♻️ 再生紙救地球小遊戲</h1>
+  <p>快來挑戰三題環保任務，看你是不是環保小尖兵！🌱</p>
+
+  <div class="question">
+    <h2>🌍 問題 1：木材與水的比例</h2>
+    <p>製作 1 公斤的白紙需要 2.7 公斤木材與 300 公升的水。</p>
+    <label for="wood1">木材量：</label>
+    <input id="wood1" type="number" step="0.1" />
+    <label for="water1">水量：</label>
+    <input id="water1" type="number" />
+    <button onclick="checkQ1()">確認答案</button>
+    <div id="result1" class="result"></div>
+  </div>
+
+  <div class="question">
+    <h2>📰 問題 2：印報紙用多少木材？</h2>
+    <p>每製造 5000 份報紙需 20 棵樹，現在要印製 1000 份報紙，會用掉多少公斤木材呢？</p>
+    <label for="wood2">請輸入木材公斤數：</label>
+    <input id="wood2" type="number" />
+    <button onclick="checkQ2()">確認答案</button>
+    <div id="result2" class="result"></div>
+  </div>
+
+  <div class="question">
+    <h2>🌳 問題 3：再生紙的力量</h2>
+    <p>回收 50 公斤紙可以救 1 棵大樹，100 公斤紙可以製成 75 公斤再生紙。現在回收了 30,000 公斤的紙，請問：</p>
+    <label for="recycled">可以製成再生紙（公斤）：</label>
+    <input id="recycled" type="number" />
+    <br /><br />
+    <label for="treesSaved">拯救樹木數：</label>
+    <input id="treesSaved" type="number" />
+    <button onclick="checkQ3()">確認答案</button>
+    <div id="result3" class="result"></div>
+  </div>
+
+  <script>
+    function checkQ1() {
+      const wood = parseFloat(document.getElementById('wood1').value);
+      const water = parseFloat(document.getElementById('water1').value);
+      const ratio = (wood / water).toFixed(2);
+      const correctRatio = (2.7 / 300).toFixed(2);
+      if (ratio === correctRatio) {
+        document.getElementById('result1').innerText = "✅ 太棒了！答案正確！";
+      } else {
+        document.getElementById('result1').innerText = `❌ 再試一次喔！正確比例是 ${correctRatio}`;
+      }
+    }
+
+    function checkQ2() {
+      const woodUsed = parseFloat(document.getElementById('wood2').value);
+      const expected = (2.7 * (1000 / 5000)).toFixed(1);
+      if (woodUsed.toFixed(1) === expected) {
+        document.getElementById('result2').innerText = "✅ 答對了！你超環保！";
+      } else {
+        document.getElementById('result2').innerText = `❌ 正確答案是 ${expected} 公斤喔！`;
+      }
+    }
+
+    function checkQ3() {
+      const recycled = parseFloat(document.getElementById('recycled').value);
+      const trees = parseInt(document.getElementById('treesSaved').value);
+      const correctRecycled = 30000 * 0.75;
+      const correctTrees = 30000 / 50;
+      if (Math.round(recycled) === correctRecycled && trees === correctTrees) {
+        document.getElementById('result3').innerText = "🎉 恭喜你！地球多了一點綠！";
+      } else {
+        document.getElementById('result3').innerText = `❌ 再想想～正確答案是 ${correctRecycled} 公斤再生紙，拯救 ${correctTrees} 棵樹 🌲`;
+      }
+    }
+  </script>
+</body>
+</html>
